@@ -170,12 +170,12 @@ if __name__ == '__main__':
     x.add_argument(
         '--diesel_mini_grid_lv_connection_lifetime_in_years',
         metavar='FLOAT', type=float)
-    #x.add_argument(
-    #    'solar_home_lv_connection_raw_cost',
-    #    metavar='FLOAT', type=float)
-    #x.add_argument(
-    #    'solar_home_lv_connection_lifetime_in_years',
-    #    metavar='FLOAT', type=float)
+    x.add_argument(
+        '--solar_home_lv_connection_raw_cost',
+        metavar='FLOAT', type=float)
+    x.add_argument(
+        '--solar_home_lv_connection_lifetime_in_years',
+        metavar='FLOAT', type=float)
     x.add_argument(
         '--solar_home_system_loss_as_percent_of_total_production',
         metavar='PERCENT', type=float)
@@ -209,7 +209,6 @@ if __name__ == '__main__':
     x.add_argument(
         '--solar_home_balance_lifetime_in_years',
         metavar='FLOAT', type=float)
-
     x.add_argument(
         '--solar_mini_grid_system_loss_as_percent_of_total_production',
         metavar='PERCENT', type=float)

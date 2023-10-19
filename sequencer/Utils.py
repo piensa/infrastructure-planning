@@ -61,12 +61,12 @@ def prep_data(network, metrics, loc_tol=.5):
     closest_match = metrics.ix[metrics.groupby('m_coords').apply(find_closest).values]
     
     # anything in node_df that failed to find a fuzzy_match is a 'Fake' node
-    fake_nodes = node_df[~node_df.index.isin(closest_match.index)]
+    fake_nodes = node_df[~node_df.index.isin(closest_match.index)].copy()
     # reset m_coords on fakes
-    fake_nodes['m_coords'] = fake_nodes['m_coords'].apply(lambda x: ())
+    fake_nodes.loc[fake_nodes.index, 'm_coords'] = fake_nodes.loc[fake_nodes.index, 'm_coords'].apply(lambda x: ())
     
     # tack the fake nodes on to the matched metrics (all values are NULL, except coord)
-    metrics = pd.concat([closest_match, fake_nodes]).sort_index()
+    metrics = pd.concat([closest_match, fake_nodes], sort=True).sort_index()
     
     # finally assume Network edges are bi-directional
     network = network.to_undirected().to_directed()

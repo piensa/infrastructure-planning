@@ -435,7 +435,7 @@ def save_total_summary_by_technology(
         Series(discounted_cost_by_technology),
         Series(levelized_cost_by_technology),
         Series(count_by_technology),
-    ], axis=1)
+    ], sort=True, axis=1)
     t.index.name = 'Technology'
     t.index = [format_technology(x) for x in t.index]
     t.columns = [

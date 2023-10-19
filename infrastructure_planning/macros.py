@@ -269,9 +269,9 @@ def interpolate_values(source_table, source_column, target_value):
     if len(t) == 1:
         return t.ix[t.index[0]]
     if target_value <= minimum_source_value:
-        return t.ix[source_values.argmin()]
+        return t.ix[source_values.idxmin()]
     if target_value >= maximum_source_value:
-        return t.ix[source_values.argmax()]
+        return t.ix[source_values.idxmax()]
     # Get two rows nearest to target value
     sorted_indices = (source_values - target_value).abs().argsort()
     row0 = t.ix[sorted_indices[0]]

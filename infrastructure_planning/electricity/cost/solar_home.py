@@ -1,5 +1,6 @@
 from .solar import (
     estimate_panel_cost, estimate_battery_cost, estimate_balance_cost)
+from .mini_grid import estimate_lv_connection_cost
 from . import (
     prepare_component_cost_by_year, prepare_external_cost,
     prepare_internal_cost)
@@ -87,4 +88,4 @@ def estimate_solar_home_lv_connection_cost(
         solar_home_lv_connection_installation_cost_as_percent_of_raw_cost,
         solar_home_lv_connection_maintenance_cost_per_year_as_percent_of_raw_cost,  # noqa
         solar_home_lv_connection_lifetime_in_years)
-                                                                                       111,47
+

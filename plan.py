@@ -171,6 +171,15 @@ if __name__ == '__main__':
         '--diesel_mini_grid_lv_connection_lifetime_in_years',
         metavar='FLOAT', type=float)
     x.add_argument(
+        '--solar_home_lv_connection_installation_cost_as_percent_of_raw_cost',
+        metavar='PERCENT', type=float)
+    x.add_argument(
+        '--solar_home_lv_connection_maintenance_cost_per_year_as_percent_of_raw_cost',
+        metavar='PERCENT', type=float)
+    x.add_argument(
+        '--solar_home_lv_connection_lifetime_in_years',
+        metavar='FLOAT', type=float)
+    x.add_argument(
         '--solar_home_lv_connection_raw_cost',
         metavar='FLOAT', type=float)
     x.add_argument(

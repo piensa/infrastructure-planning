@@ -37,7 +37,6 @@ class NetworkPlan(object):
         """
         All initialization (cleaning up metrics, network, etc)
         """
-
         # Load in and align input data
         logger.info('Aligning Network Nodes With Input Metrics')
         self._network, self._metrics = prep_data(network, 
@@ -93,7 +92,9 @@ class NetworkPlan(object):
         if isinstance(shp, unicode):
             shp = shp.encode("ascii")
 
-        return cls(nx.read_shp(shp), pd.read_csv(csv, skiprows=skip_rows), **kwargs)
+        proposed = nx.read_shp(shp)
+        metrics = pd.read_csv(csv, skiprows=skip_rows)
+        return cls(proposed, metrics, **kwargs)
 
     def assert_is_tree(self):
         in_degree = self.network.in_degree()
@@ -110,7 +111,6 @@ class NetworkPlan(object):
        
     def _depth_first_directed(self, graph):
         """Transforms a networks edges to direct away from the root"""
-        
         # Figure out which subgraph this is
         sub = next((i+1 for i, g in enumerate(self.get_subgraphs()) if g==graph), None)
         # Log the Subgraph progress
@@ -129,7 +129,6 @@ class NetworkPlan(object):
 
     def fakes(self, nodes):
         """applies a filter to the input nodes, returning the subset representing fake nodes"""
-
         # get a view of the DataFrame without positional columns
         non_positional = self.metrics[self.metrics.columns.difference(['X', 'Y', 'coords', 'm_coords'])].ix[nodes]
         # find rows that are all null, these are the nodes representing the connection to existing infastructure
@@ -191,7 +190,6 @@ class NetworkPlan(object):
     
     def direct_network(self):
         """Decomposes a full graph into its components and directs them away from their roots"""
-        #print list(self.get_subgraphs())
         graphs = [self._depth_first_directed(g) for g in self.get_subgraphs()]
         self._network = reduce(lambda a, b: nx.union(a, b), graphs)
         

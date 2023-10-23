@@ -14,7 +14,7 @@ def prep_data(network, metrics, loc_tol=.5):
     This block of code performs fuzzy matching to align the floating point coordinates
     from the network shapefile with the input metrics, the drops non matching records
     """  
-
+ 
     # convert the node names from coords to integers, cache the coords as attrs
     # but ONLY if the nodes are themselves collections (which is the default for
     # networkx shapefile import)
@@ -23,6 +23,7 @@ def prep_data(network, metrics, loc_tol=.5):
        isinstance(network.nodes()[0], collections.Iterable)):
         network = nx.convert_node_labels_to_integers(network, label_attribute='coords')
     
+   
     # convert special characters to dot notation 
     metrics.columns = parse_cols(metrics)
 

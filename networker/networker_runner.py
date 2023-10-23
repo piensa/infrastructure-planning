@@ -79,7 +79,6 @@ class NetworkerRunner(object):
                             single_network=single_network,
                             network_algorithm=network_algorithm,
                             spherical_accuracy=spherical_accuracy)
-
         log.info("writing output")
         # now save it
         if not os.path.exists(self.output_directory):
@@ -132,7 +131,6 @@ def build_network(demand_nodes,
 
     """
     geo_graph = subgraphs = rtree = None
-
     if existing:
         log.info("merging network and nodes")
         geo_graph, subgraphs, rtree = \

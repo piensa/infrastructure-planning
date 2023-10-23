@@ -155,7 +155,6 @@ def mod_boruvka(G, subgraphs=None, rtree=None):
         for C in subgraphs.connected_components(component_subset=V):
 
             candidates = candidate_components(C)
-
             # Skip if no valid candidates
             if not candidates:
                 continue
@@ -205,7 +204,6 @@ def mod_boruvka(G, subgraphs=None, rtree=None):
         # custom criteria
         while Ep._queue:
             (um, vm, dm) = Ep.pop()
-
             # if doesn't create cycle
             # and subgraphs have enough MV
             # and we're not connecting 2 fake nodes

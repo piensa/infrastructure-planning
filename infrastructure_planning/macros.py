@@ -116,7 +116,6 @@ def normalize_arguments(normalization_functions, g):
         try:
             g.update(compute(normalize_argument, g))
         except ValidationError as e:
-            print(e)
             errors.append(e)
     # Make decision
     if errors:
@@ -127,7 +126,6 @@ def normalize_arguments(normalization_functions, g):
 def run(main_functions, g):
     g['infrastructure_graph'] = get_graph_from_table(g['demand_point_table'])
     for f in main_functions:
-        print(f.func_name)
         if '_total_' in f.func_name:
             g.update(compute(f, g))
             continue
